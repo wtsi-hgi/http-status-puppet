@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/wtsi-hgi/http-status-puppet.svg?branch=master)](https://travis-ci.org/wtsi-hgi/http-status-puppet)
 [![codecov](https://codecov.io/gh/wtsi-hgi/http-status-puppet/branch/master/graph/badge.svg)](https://codecov.io/gh/wtsi-hgi/http-status-puppet)
+[![PyPI version](https://badge.fury.io/py/httpstatuspuppet.svg)](https://badge.fury.io/py/httpstatuspuppet)
 
 # HTTP Status Puppet
 _A HTTP server that will return a status code of your choice_ 
@@ -41,7 +42,7 @@ PYTHONPATH=. python httpstatuspuppet/entrypoint.py
 
 ### Docker
 ```bash
-docker run -d -p 8000:$HOST_PORT mercury/http-status-puppet
+docker run -d -p ${HOST_PORT}:8000 mercury/http-status-puppet
 ```
 
 
