@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import sys
+import logging
 
 from httpstatuspuppet.server import Server
 
+logging.root.setLevel(logging.INFO)
 server = Server()
-print(f"Starting at {server.url}", file=sys.stderr)
+logging.info(f"Starting at {server.url}")
 server.run()
