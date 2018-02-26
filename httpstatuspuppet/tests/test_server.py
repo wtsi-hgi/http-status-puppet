@@ -38,6 +38,14 @@ class TestServer(unittest.TestCase):
                 response = requests.get(f"{self.server.url}/{status_code}")
                 self.assertEqual(status_code, response.status_code)
 
+    def test_non_numeric_status_code(self):
+        response = requests.get(f"{self.server.url}/kittens")
+        self.assertEqual(400, response.status_code)
+
+    def test_out_of_range_status_code(self):
+        response = requests.get(f"{self.server.url}/99999")
+        self.assertEqual(400, response.status_code)
+
     def test_start_when_started(self):
         assert _is_server_running(self.server)
         self.server.start()
