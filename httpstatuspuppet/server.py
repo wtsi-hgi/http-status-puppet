@@ -1,9 +1,8 @@
-from typing import Callable, Dict
-
-from threading import Thread
 from wsgiref.simple_server import make_server
 
 from http_status import Status, InvalidHttpCode
+from threading import Thread
+from typing import Callable, Dict, List
 
 from httpstatuspuppet.common import HttpStatusPuppetError
 
@@ -38,7 +37,13 @@ class Server:
     Basic authentication server.
     """
     @staticmethod
-    def _endpoint(environment: Dict, start_response: Callable):
+    def _endpoint(environment: Dict, start_response: Callable) -> List[bytes]:
+        """
+        Endpoint handler.
+        :param environment: environment of call
+        :param start_response: header handler
+        :return: body
+        """
         path = environment["PATH_INFO"][1:]
         try:
             raw_status = int(path)
@@ -54,11 +59,12 @@ class Server:
         return [f"{code_and_description}".encode("utf-8")]
 
     @staticmethod
-    def _generate_error(error_message: str, start_response: Callable):
+    def _generate_error(error_message: str, start_response: Callable) -> List[bytes]:
         """
-        TODO
-        :param starter:
-        :return:
+        Generates an error.
+        :param error_message: error message
+        :param start_response: header handler
+        :return: error body
         """
         start_response(_code_and_description(Status(400)), [])
         return [error_message.encode("utf-8")]

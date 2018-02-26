@@ -15,7 +15,7 @@ setup(
     install_requires=open("requirements.txt", "r").readlines(),
     url="https://github.com/wtsi-hgi/http-status-puppet.git",
     license="MIT",
-    description="TODO",
+    description="A HTTP server that will return a status code of your choice",
     long_description=read_markdown("README.md"),
     zip_safe=True
 )
